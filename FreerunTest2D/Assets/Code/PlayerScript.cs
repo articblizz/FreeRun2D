@@ -77,7 +77,7 @@ public class PlayerScript : MonoBehaviour {
         {
             shouldDie = true;
             rigidBody2D.fixedAngle = false;
-            rigidBody2D.AddTorque(10 * freeScript.dir);
+            rigidBody2D.AddTorque(10 * -freeScript.dir);
         }
 
 

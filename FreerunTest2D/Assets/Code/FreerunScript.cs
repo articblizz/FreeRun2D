@@ -88,8 +88,8 @@ public class FreerunScript : MonoBehaviour {
 
             if(Input.GetKeyDown(KeyCode.Space))
             {
-                var x = 20;
-                var y = 12;
+                var x = 23;
+                var y = 15;
                     
                 if (isRightWall && dir > 0 && !haveWallJumped)
                 {
