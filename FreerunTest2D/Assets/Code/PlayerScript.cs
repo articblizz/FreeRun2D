@@ -8,13 +8,19 @@ public class PlayerScript : MonoBehaviour {
     public float JumpForce = 30;
     public float HangJumpForce = 30;
 
+    public bool IsImmortal = false;
+
     public LayerMask whatIsGround;
 
     public Transform groundCheck;
 
     public FreerunScript freeScript;
 
-    bool isOnGround;
+    public bool isOnGround;
+    public float LethalVelocity = -20;
+    bool shouldDie = false;
+
+    public bool disableInput = false;
 
     Animator animator;
 
@@ -35,7 +41,12 @@ public class PlayerScript : MonoBehaviour {
         //animator.SetBool("IsHanging", !isOnGround);
         animator.SetBool("IsHanging", freeScript.IsHanging);
 
-        float direction = Input.GetAxis("Horizontal");
+        float direction = 0;
+
+        if (!disableInput)
+        {
+            direction = Input.GetAxis("Horizontal");
+        }
 
         if (!freeScript.IsHanging)
         {
@@ -53,32 +64,63 @@ public class PlayerScript : MonoBehaviour {
         {
             rigidBody2D.velocity = Vector2.zero;
         }
-        else
+        else if(!disableInput && isOnGround)
         {
-            rigidBody2D.velocity = new Vector2(direction * Speed, rigidBody2D.velocity.y); 
+            rigidBody2D.velocity = new Vector2(direction * Speed, rigidBody2D.velocity.y);
         }
     }
+
 	
 	void Update () {
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (rigidBody2D.velocity.y < LethalVelocity && !shouldDie && !IsImmortal)
         {
-            if (isOnGround)
-            {
-                Jump(JumpForce);
-            }
-            else if(freeScript.IsHanging)
-            {
-                freeScript.IsHanging = false;
+            shouldDie = true;
+            rigidBody2D.fixedAngle = false;
+            rigidBody2D.AddTorque(10 * freeScript.dir);
+        }
 
-                Jump(HangJumpForce);
+
+        if (!disableInput)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (isOnGround)
+                {
+                    Jump(JumpForce);
+                }
+                else if (freeScript.IsHanging)
+                {
+                    freeScript.IsHanging = false;
+
+                    Jump(new Vector2(10 * freeScript.dir, HangJumpForce));
+                }
+            }
+
+            if (freeScript.IsHanging)
+            {
+                if (Input.GetKey(KeyCode.S))
+                {
+                    freeScript.IsHanging = false;
+                }
             }
         }
 
 	}
 
-    void Jump(float force)
+    void OnCollisionEnter2D(Collision2D col)
     {
-        rigidBody2D.AddForce(new Vector2(0, force * 10));
+        if (shouldDie && col.collider.tag == "Roof")
+            disableInput = true;
+    }
+
+    public void Jump(float forceY, float forceX = 0)
+    {
+        rigidBody2D.AddForce(new Vector2(forceX, forceY * 10));
+    }
+
+    public void Jump(Vector2 force)
+    {
+        rigidBody2D.AddForce(force * 10);
     }
 }

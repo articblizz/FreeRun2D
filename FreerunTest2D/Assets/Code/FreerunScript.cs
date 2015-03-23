@@ -8,14 +8,17 @@ public class FreerunScript : MonoBehaviour {
     public Rigidbody2D rigidBody2D;
 
     GameObject currentEdge;
-
     public GameObject hand;
 
-    public bool isFacingRight = true;    
+    public bool isFacingRight = true;
 
-    public float hangingOffset = 0.9f;
+    public Vector2 hangOffset = new Vector2(0.5f, 1);
 
-    int d = 1;
+    public Vector2 WallJumpForceUp = new Vector2(10, 30);
+
+    public int dir = 1;
+
+    PlayerScript plyScript;
 
     void Awake()
     {
@@ -24,6 +27,7 @@ public class FreerunScript : MonoBehaviour {
 	void Start () {
 
         rigidBody2D = GetComponent<Rigidbody2D>();
+        plyScript = GetComponent<PlayerScript>();
 	}
 
     public void Flip()
@@ -32,22 +36,23 @@ public class FreerunScript : MonoBehaviour {
         var scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
-        d *= -1;
+        dir *= -1;
         //transform.RotateAround(transform.position, transform.up, 180f);
     }
 	
 	void Update () {
 
-        //var direction = (transform.position - arm.transform.position);
-        //var rotation = Quaternion.LookRotation(direction);
-        //arm.transform.rotation = Quaternion.Slerp(arm.transform.rotation, rotation, Time.deltaTime * 5);
+        if (plyScript.isOnGround)
+        {
+            haveWallJumped = false;
+        }
 
         if (IsHanging)
         {
             var edge = currentEdge.transform.position;
             //var daHand = hand.transform.localPosition;
-            var posToGo = new Vector2(edge.x - (hangingOffset * d), 
-                edge.y - (hangingOffset));
+            var posToGo = new Vector2(edge.x - (hangOffset.x * dir), 
+                edge.y - hangOffset.y);
             transform.position = Vector2.Lerp(transform.position, posToGo, Time.deltaTime * 10);
         }
         else
@@ -56,13 +61,52 @@ public class FreerunScript : MonoBehaviour {
         }
 	}
 
+    bool haveWallJumped = false;
+    bool haveWallJumpedUpwards = false;
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.tag == "Wall")
+        {
+            haveWallJumped = false;
+            haveWallJumpedUpwards = false;
+        }
+    }
+
     void OnTriggerStay2D(Collider2D col)
     {
-        if (rigidBody2D.velocity.y < 0)
+        print(col.tag);
+        if (rigidBody2D.velocity.y < 0 && !Input.GetKey(KeyCode.S) && col.tag == "Edge" && !plyScript.disableInput)
         {
             IsHanging = true;
             currentEdge = col.gameObject;
             //print("GRAB");
+        }
+        else if(rigidBody2D.velocity.y > -0.3f && col.tag == "Wall" && !plyScript.isOnGround)
+        {
+            bool isRightWall = col.name.StartsWith("R_");
+
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                var x = 20;
+                var y = 12;
+                    
+                if (isRightWall && dir > 0 && !haveWallJumped)
+                {
+                    plyScript.Jump(new Vector2(x, y));
+                    haveWallJumped = true;
+                }
+                else if (!isRightWall && dir < 0 && !haveWallJumped)
+                {
+                    plyScript.Jump(new Vector2(-x, y));
+                    haveWallJumped = true;
+                }
+                else if(!haveWallJumpedUpwards)
+                {
+                    plyScript.Jump(new Vector2(WallJumpForceUp.x * dir, WallJumpForceUp.y));
+                    haveWallJumpedUpwards = true;
+                }
+            }
         }
     }
 }
