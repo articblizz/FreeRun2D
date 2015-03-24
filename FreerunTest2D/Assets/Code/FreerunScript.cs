@@ -19,8 +19,9 @@ public class FreerunScript : MonoBehaviour {
     public Vector2 WallJumpForceUp = new Vector2(10, 30);
     public float WallJumpSideX = 35;
     public float WallJumpSideY = 25;
-    Animator animator;
     public int dir = 1;
+
+    public bool isWithinWalljump;
 
     PlayerScript plyScript;
 
@@ -28,12 +29,11 @@ public class FreerunScript : MonoBehaviour {
     {
     }
 
-	void Start () {
+    void Start () {
 
-        animator = GetComponent<Animator>();
         rigidBody2D = GetComponent<Rigidbody2D>();
         plyScript = GetComponent<PlayerScript>();
-	}
+    }
 
     public void Flip()
     {
@@ -44,8 +44,8 @@ public class FreerunScript : MonoBehaviour {
         dir *= -1;
         //transform.RotateAround(transform.position, transform.up, 180f);
     }
-	
-	void Update () {
+    
+    void Update () {
 
         if (plyScript.isOnGround)
         {
@@ -64,7 +64,7 @@ public class FreerunScript : MonoBehaviour {
         {
             currentEdge = null;
         }
-	}
+    }
 
     bool haveWallJumped = false;
     bool haveWallJumpedUpwards = false;
@@ -81,6 +81,18 @@ public class FreerunScript : MonoBehaviour {
             wallSlideTimer = 0;
             haveWallJumped = false;
             haveWallJumpedUpwards = false;
+            isWithinWalljump = false;
+            print(isWithinWalljump);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Wall")
+        {
+            isWithinWalljump = true;
+
+            print(isWithinWalljump);
         }
     }
 

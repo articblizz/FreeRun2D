@@ -30,13 +30,13 @@ public class PlayerScript : MonoBehaviour {
     public float MaxVeloY = 5;
     Rigidbody2D rigidBody2D;
 
-	void Start () {
+    void Start () {
 
         rigidBody2D = GetComponent<Rigidbody2D>();
 
         animator = GetComponent<Animator>();
         freeScript = GetComponent<FreerunScript>();
-	}
+    }
 
     void OnDrawGizmos()
     {
@@ -47,8 +47,6 @@ public class PlayerScript : MonoBehaviour {
     void FixedUpdate()
     {
         isOnGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadious, whatIsGround);
-        print(isOnGround);
-
         //animator.SetBool("IsHanging", !isOnGround);
         animator.SetBool("IsHanging", freeScript.IsHanging);
 
@@ -110,7 +108,7 @@ public class PlayerScript : MonoBehaviour {
             rigidBody2D.velocity = new Vector2(speed, rigidBody2D.velocity.y);
             //rigidBody2D.velocity = new Vector2(direction * TargetSpeed, rigidBody2D.velocity.y);
         }
-        else if (!isOnGround)
+        else if (!isOnGround && !freeScript.isWithinWalljump)
         {
             var velo = rigidBody2D.velocity;
             velo.x += (direction * (Acceleration / 10));
@@ -121,10 +119,8 @@ public class PlayerScript : MonoBehaviour {
             rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, MaxVeloY);
     }
 
-	
-	void Update () {
-
-        print(freeScript.IsHanging);
+    
+    void Update () {
 
         if (rigidBody2D.velocity.y < LethalVelocity && !shouldDie && !IsImmortal)
         {
@@ -146,7 +142,7 @@ public class PlayerScript : MonoBehaviour {
                 {
                     freeScript.IsHanging = false;
                     //animator.SetTrigger("ClimbEdge");
-                    Jump(HangJumpForce);
+                    Jump(new Vector2((HangJumpForce/10) * freeScript.dir,HangJumpForce));
                 }
             }
 
@@ -159,7 +155,7 @@ public class PlayerScript : MonoBehaviour {
             }
         }
 
-	}
+    }
 
     void OnCollisionEnter2D(Collision2D col)
     {
