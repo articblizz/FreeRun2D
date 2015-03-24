@@ -3,10 +3,14 @@ using System.Collections;
 
 public class PlayerScript : MonoBehaviour {
 
-    public float Speed = 5;
+    public float TargetSpeed = 5;
+    float spdRight, spdLeft;
+    public float Acceleration = 0.1f;
 
     public float JumpForce = 30;
     public float HangJumpForce = 30;
+
+    public float groundCheckRadious = 0.2f;
 
     public bool IsImmortal = false;
 
@@ -23,7 +27,7 @@ public class PlayerScript : MonoBehaviour {
     public bool disableInput = false;
 
     Animator animator;
-
+    public float MaxVeloY = 5;
     Rigidbody2D rigidBody2D;
 
 	void Start () {
@@ -34,9 +38,16 @@ public class PlayerScript : MonoBehaviour {
         freeScript = GetComponent<FreerunScript>();
 	}
 
+    void OnDrawGizmos()
+    {
+        //Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadious);
+    }
+
     void FixedUpdate()
     {
-        isOnGround = Physics2D.OverlapCircle(groundCheck.position, 0.03f, whatIsGround);
+        isOnGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadious, whatIsGround);
+        print(isOnGround);
 
         //animator.SetBool("IsHanging", !isOnGround);
         animator.SetBool("IsHanging", freeScript.IsHanging);
@@ -45,7 +56,7 @@ public class PlayerScript : MonoBehaviour {
 
         if (!disableInput)
         {
-            direction = Input.GetAxis("Horizontal");
+            direction = Input.GetAxisRaw("Horizontal");
         }
 
         if (!freeScript.IsHanging)
@@ -59,6 +70,7 @@ public class PlayerScript : MonoBehaviour {
                 freeScript.Flip();
             }
         }
+        
 
         if (freeScript.IsHanging)
         {
@@ -66,12 +78,53 @@ public class PlayerScript : MonoBehaviour {
         }
         else if(!disableInput && isOnGround)
         {
-            rigidBody2D.velocity = new Vector2(direction * Speed, rigidBody2D.velocity.y);
+            if (direction > 0 && TargetSpeed < 0)
+                TargetSpeed *= -1;
+            else if (direction < 0 && TargetSpeed > 0)
+                TargetSpeed *= -1;
+            var speed = rigidBody2D.velocity.x;
+
+            if (direction > 0 && speed < TargetSpeed)
+            {
+                speed += Acceleration;
+            }
+            else if (direction < 0 && speed > TargetSpeed)
+            {
+                speed -= Acceleration;
+            }
+            else if (direction == 0)
+            {
+                if (speed < 0)
+                {
+                    speed += Acceleration;
+                    if (speed > 0)
+                        speed = 0;
+                }
+                else
+                {
+                    speed -= Acceleration;
+                    if (speed < 0)
+                        speed = 0;
+                }
+            }
+            rigidBody2D.velocity = new Vector2(speed, rigidBody2D.velocity.y);
+            //rigidBody2D.velocity = new Vector2(direction * TargetSpeed, rigidBody2D.velocity.y);
         }
+        else if (!isOnGround)
+        {
+            var velo = rigidBody2D.velocity;
+            velo.x += (direction * (Acceleration / 10));
+            rigidBody2D.velocity = velo;
+        }
+
+        if (rigidBody2D.velocity.y > MaxVeloY)
+            rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, MaxVeloY);
     }
 
 	
 	void Update () {
+
+        print(freeScript.IsHanging);
 
         if (rigidBody2D.velocity.y < LethalVelocity && !shouldDie && !IsImmortal)
         {
@@ -92,8 +145,8 @@ public class PlayerScript : MonoBehaviour {
                 else if (freeScript.IsHanging)
                 {
                     freeScript.IsHanging = false;
-
-                    Jump(new Vector2(10 * freeScript.dir, HangJumpForce));
+                    //animator.SetTrigger("ClimbEdge");
+                    Jump(HangJumpForce);
                 }
             }
 
@@ -110,8 +163,11 @@ public class PlayerScript : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (shouldDie && col.collider.tag == "Roof")
+        if (shouldDie && (col.collider.tag == "Roof" || col.collider.tag == "Ground"))
+        {
+            rigidBody2D.drag = 3f;
             disableInput = true;
+        }
     }
 
     public void Jump(float forceY, float forceX = 0)

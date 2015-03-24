@@ -10,12 +10,16 @@ public class FreerunScript : MonoBehaviour {
     GameObject currentEdge;
     public GameObject hand;
 
+    public float MaxVelocityYOnWall = -5;
+
     public bool isFacingRight = true;
 
     public Vector2 hangOffset = new Vector2(0.5f, 1);
 
     public Vector2 WallJumpForceUp = new Vector2(10, 30);
-
+    public float WallJumpSideX = 35;
+    public float WallJumpSideY = 25;
+    Animator animator;
     public int dir = 1;
 
     PlayerScript plyScript;
@@ -26,6 +30,7 @@ public class FreerunScript : MonoBehaviour {
 
 	void Start () {
 
+        animator = GetComponent<Animator>();
         rigidBody2D = GetComponent<Rigidbody2D>();
         plyScript = GetComponent<PlayerScript>();
 	}
@@ -64,10 +69,16 @@ public class FreerunScript : MonoBehaviour {
     bool haveWallJumped = false;
     bool haveWallJumpedUpwards = false;
 
+    float wallSlideTimer = 0;
+
     void OnTriggerExit2D(Collider2D col)
     {
+        //if (col.tag == "Edge")
+        //    plyScript.ignoreEdge = false;
+
         if (col.tag == "Wall")
         {
+            wallSlideTimer = 0;
             haveWallJumped = false;
             haveWallJumpedUpwards = false;
         }
@@ -75,38 +86,43 @@ public class FreerunScript : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D col)
     {
-        print(col.tag);
         if (rigidBody2D.velocity.y < 0 && !Input.GetKey(KeyCode.S) && col.tag == "Edge" && !plyScript.disableInput)
         {
             IsHanging = true;
             currentEdge = col.gameObject;
             //print("GRAB");
         }
-        else if(rigidBody2D.velocity.y > -0.3f && col.tag == "Wall" && !plyScript.isOnGround)
+        else if(rigidBody2D.velocity.y >= (MaxVelocityYOnWall - 2) && col.tag == "Wall" && !plyScript.isOnGround && !IsHanging)
         {
             bool isRightWall = col.name.StartsWith("R_");
 
             if(Input.GetKeyDown(KeyCode.Space))
             {
-                var x = 23;
-                var y = 15;
-                    
                 if (isRightWall && dir > 0 && !haveWallJumped)
                 {
-                    plyScript.Jump(new Vector2(x, y));
+                    plyScript.Jump(new Vector2(WallJumpSideX, WallJumpSideY));
                     haveWallJumped = true;
                 }
                 else if (!isRightWall && dir < 0 && !haveWallJumped)
                 {
-                    plyScript.Jump(new Vector2(-x, y));
+                    plyScript.Jump(new Vector2(-WallJumpSideX, WallJumpSideY));
                     haveWallJumped = true;
                 }
                 else if(!haveWallJumpedUpwards)
                 {
-                    plyScript.Jump(new Vector2(WallJumpForceUp.x * dir, WallJumpForceUp.y));
+                    plyScript.Jump(new Vector2(WallJumpForceUp.x * -dir, WallJumpForceUp.y));
                     haveWallJumpedUpwards = true;
                 }
             }
         }
+
+        if (col.tag == "Wall" && rigidBody2D.velocity.y < MaxVelocityYOnWall && rigidBody2D.velocity.y > -10)
+        {
+            if (wallSlideTimer > 0.5f)
+                return;
+            wallSlideTimer += Time.deltaTime;
+            rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, MaxVelocityYOnWall);
+        }
+
     }
 }
