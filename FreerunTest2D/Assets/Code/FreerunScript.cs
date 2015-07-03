@@ -33,6 +33,8 @@ public class FreerunScript : MonoBehaviour {
 
         rigidBody2D = GetComponent<Rigidbody2D>();
         plyScript = GetComponent<PlayerScript>();
+
+        Flip();
     }
 
     public void Flip()
@@ -47,7 +49,7 @@ public class FreerunScript : MonoBehaviour {
     
     void Update () {
 
-        if (plyScript.isOnGround)
+        if (plyScript.isOnGround && haveWallJumped)
         {
             haveWallJumped = false;
         }
@@ -64,6 +66,34 @@ public class FreerunScript : MonoBehaviour {
         {
             currentEdge = null;
         }
+
+
+
+
+        if (isWithinWalljump && currentCol != null && canWallJump)
+        {
+            bool isRightWall = currentCol.name.StartsWith("R_");
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                print("You jumped");
+                if (isRightWall && dir < 0 && !haveWallJumped)
+                {
+                    plyScript.Jump(new Vector2(WallJumpSideX, WallJumpSideY));
+                    haveWallJumped = true;
+                }
+                else if (!isRightWall && dir > 0 && !haveWallJumped)
+                {
+                    plyScript.Jump(new Vector2(-WallJumpSideX, WallJumpSideY));
+                    haveWallJumped = true;
+                }
+                else if (!haveWallJumpedUpwards)
+                {
+                    plyScript.Jump(new Vector2(WallJumpForceUp.x * -dir, WallJumpForceUp.y));
+                    haveWallJumpedUpwards = true;
+                }
+            }
+        }
     }
 
     bool haveWallJumped = false;
@@ -71,10 +101,13 @@ public class FreerunScript : MonoBehaviour {
 
     float wallSlideTimer = 0;
 
+    bool canWallJump = false;
+
     void OnTriggerExit2D(Collider2D col)
     {
         //if (col.tag == "Edge")
         //    plyScript.ignoreEdge = false;
+        currentCol = null;
 
         if (col.tag == "Wall")
         {
@@ -82,50 +115,44 @@ public class FreerunScript : MonoBehaviour {
             haveWallJumped = false;
             haveWallJumpedUpwards = false;
             isWithinWalljump = false;
-            print(isWithinWalljump);
+            //print(isWithinWalljump);
         }
     }
 
+
+    Collider2D currentCol;
     void OnTriggerEnter2D(Collider2D col)
     {
+        currentCol = col;
         if (col.tag == "Wall")
         {
             isWithinWalljump = true;
 
-            print(isWithinWalljump);
+            //print(isWithinWalljump);
         }
     }
 
+    public GameObject jumpIndicator;
+
     void OnTriggerStay2D(Collider2D col)
     {
+
         if (rigidBody2D.velocity.y < 0 && !Input.GetKey(KeyCode.S) && col.tag == "Edge" && !plyScript.disableInput)
         {
             IsHanging = true;
             currentEdge = col.gameObject;
             //print("GRAB");
         }
-        else if(rigidBody2D.velocity.y >= (MaxVelocityYOnWall - 2) && col.tag == "Wall" && !plyScript.isOnGround && !IsHanging)
+        else if (rigidBody2D.velocity.y >= (MaxVelocityYOnWall - 2) && col.tag == "Wall" && !plyScript.isOnGround && !IsHanging)
         {
-            bool isRightWall = col.name.StartsWith("R_");
+            jumpIndicator.SetActive(true);
+            canWallJump = true;
 
-            if(Input.GetKeyDown(KeyCode.Space))
-            {
-                if (isRightWall && dir > 0 && !haveWallJumped)
-                {
-                    plyScript.Jump(new Vector2(WallJumpSideX, WallJumpSideY));
-                    haveWallJumped = true;
-                }
-                else if (!isRightWall && dir < 0 && !haveWallJumped)
-                {
-                    plyScript.Jump(new Vector2(-WallJumpSideX, WallJumpSideY));
-                    haveWallJumped = true;
-                }
-                else if(!haveWallJumpedUpwards)
-                {
-                    plyScript.Jump(new Vector2(WallJumpForceUp.x * -dir, WallJumpForceUp.y));
-                    haveWallJumpedUpwards = true;
-                }
-            }
+        }
+        else
+        {
+            canWallJump = false;
+            jumpIndicator.SetActive(false);
         }
 
         if (col.tag == "Wall" && rigidBody2D.velocity.y < MaxVelocityYOnWall && rigidBody2D.velocity.y > -10)

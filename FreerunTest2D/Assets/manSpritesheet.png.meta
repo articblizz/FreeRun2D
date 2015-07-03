@@ -1,0 +1,803 @@
+fileFormatVersion: 2
+guid: a930fc09d36c7274a99ca15d24dc084d
+timeCreated: 1435914645
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: manSpritesheet_0
+    21300002: manSpritesheet_1
+    21300004: manSpritesheet_2
+    21300006: manSpritesheet_3
+    21300008: manSpritesheet_4
+    21300010: manSpritesheet_5
+    21300012: manSpritesheet_6
+    21300014: manSpritesheet_7
+    21300016: manSpritesheet_8
+    21300018: manSpritesheet_9
+    21300020: manSpritesheet_10
+    21300022: manSpritesheet_11
+    21300024: manSpritesheet_12
+    21300026: manSpritesheet_13
+    21300028: manSpritesheet_14
+    21300030: manSpritesheet_15
+    21300032: manSpritesheet_16
+    21300034: manSpritesheet_17
+    21300036: manSpritesheet_18
+    21300038: manSpritesheet_19
+    21300040: manSpritesheet_20
+    21300042: manSpritesheet_21
+    21300044: manSpritesheet_22
+    21300046: manSpritesheet_23
+    21300048: manSpritesheet_24
+    21300050: manSpritesheet_25
+    21300052: manSpritesheet_26
+    21300054: manSpritesheet_27
+    21300056: manSpritesheet_28
+    21300058: manSpritesheet_29
+    21300060: manSpritesheet_30
+    21300062: manSpritesheet_31
+    21300064: manSpritesheet_32
+    21300066: manSpritesheet_33
+    21300068: manSpritesheet_34
+    21300070: manSpritesheet_35
+    21300072: manSpritesheet_36
+    21300074: manSpritesheet_37
+    21300076: manSpritesheet_38
+    21300078: manSpritesheet_39
+    21300080: manSpritesheet_40
+    21300082: manSpritesheet_41
+    21300084: manSpritesheet_42
+    21300086: manSpritesheet_43
+    21300088: manSpritesheet_44
+    21300090: manSpritesheet_45
+    21300092: manSpritesheet_46
+    21300094: manSpritesheet_47
+    21300096: manSpritesheet_48
+    21300098: manSpritesheet_49
+    21300100: manSpritesheet_50
+    21300102: manSpritesheet_51
+    21300104: manSpritesheet_52
+    21300106: manSpritesheet_53
+    21300108: manSpritesheet_54
+    21300110: manSpritesheet_55
+    21300112: manSpritesheet_56
+    21300114: manSpritesheet_57
+    21300116: manSpritesheet_58
+    21300118: manSpritesheet_59
+    21300120: manSpritesheet_60
+    21300122: manSpritesheet_61
+    21300124: manSpritesheet_62
+    21300126: manSpritesheet_63
+    21300128: manSpritesheet_64
+    21300130: manSpritesheet_65
+    21300132: manSpritesheet_66
+    21300134: manSpritesheet_67
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: manSpritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 488
+        width: 96
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 496
+        width: 104
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 484
+        width: 84
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 488
+        width: 76
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 328
+        width: 60
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 328
+        width: 104
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 332
+        width: 104
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 324
+        width: 88
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 168
+        width: 68
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 164
+        width: 80
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 168
+        width: 32
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 188
+        width: 108
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 8
+        width: 120
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 109
+        width: 4
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 109
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 109
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 109
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 109
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 109
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 109
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 109
+        width: 22
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 109
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 109
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 109
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 109
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 109
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 109
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 109
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 109
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 109
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_30
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 87
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_31
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 87
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_32
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 87
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_33
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 87
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_34
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 87
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_35
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 87
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_36
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 87
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_37
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 87
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_38
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 73
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_39
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 73
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_40
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 73
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_41
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 73
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_42
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 73
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_43
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 73
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_44
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 73
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_45
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 73
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_46
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 45
+        width: 11
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_47
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 59
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_48
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 59
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_49
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 59
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_50
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 59
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_51
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 59
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_52
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 59
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_53
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 45
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_54
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 45
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_55
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 45
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_56
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 45
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_57
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 45
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_58
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 45
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_59
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 45
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_60
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 45
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_61
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 45
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_62
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 45
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_63
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 45
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_64
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 45
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_65
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 45
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_66
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 45
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: manSpritesheet_67
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 45
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

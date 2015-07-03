@@ -36,6 +36,8 @@ public class PlayerScript : MonoBehaviour {
 
         animator = GetComponent<Animator>();
         freeScript = GetComponent<FreerunScript>();
+
+        
     }
 
     void OnDrawGizmos()
@@ -48,7 +50,8 @@ public class PlayerScript : MonoBehaviour {
     {
         isOnGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadious, whatIsGround);
         //animator.SetBool("IsHanging", !isOnGround);
-        animator.SetBool("IsHanging", freeScript.IsHanging);
+        //animator.SetBool("IsHanging", freeScript.IsHanging);
+        
 
         float direction = 0;
 
@@ -57,13 +60,15 @@ public class PlayerScript : MonoBehaviour {
             direction = Input.GetAxisRaw("Horizontal");
         }
 
+        animator.SetBool("IsRunning", direction != 0);
+
         if (!freeScript.IsHanging)
         {
-            if (direction > 0 && !freeScript.isFacingRight)
+            if (direction < 0 && !freeScript.isFacingRight)
             {
                 freeScript.Flip();
             }
-            else if (direction < 0 && freeScript.isFacingRight)
+            else if (direction > 0 && freeScript.isFacingRight)
             {
                 freeScript.Flip();
             }
@@ -107,6 +112,7 @@ public class PlayerScript : MonoBehaviour {
             }
             rigidBody2D.velocity = new Vector2(speed, rigidBody2D.velocity.y);
             //rigidBody2D.velocity = new Vector2(direction * TargetSpeed, rigidBody2D.velocity.y);
+
         }
         else if (!isOnGround && !freeScript.isWithinWalljump)
         {
@@ -117,6 +123,8 @@ public class PlayerScript : MonoBehaviour {
 
         if (rigidBody2D.velocity.y > MaxVeloY)
             rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, MaxVeloY);
+        animator.SetFloat("ms", Mathf.Abs(rigidBody2D.velocity.x));
+        animator.SetBool("groundTouch", isOnGround);
     }
 
     
@@ -125,7 +133,7 @@ public class PlayerScript : MonoBehaviour {
         if (rigidBody2D.velocity.y < LethalVelocity && !shouldDie && !IsImmortal)
         {
             shouldDie = true;
-            rigidBody2D.fixedAngle = false;
+            rigidBody2D.constraints = RigidbodyConstraints2D.None;
             rigidBody2D.AddTorque(10 * -freeScript.dir);
         }
 
@@ -142,7 +150,7 @@ public class PlayerScript : MonoBehaviour {
                 {
                     freeScript.IsHanging = false;
                     //animator.SetTrigger("ClimbEdge");
-                    Jump(new Vector2((HangJumpForce/10) * freeScript.dir,HangJumpForce));
+                    Jump(new Vector2((HangJumpForce/10) * (freeScript.dir * -1),HangJumpForce));
                 }
             }
 
