@@ -1,2 +1,3 @@
-# Freerun2D
+# FreeRun2D
 
+Code - Felix Östh
