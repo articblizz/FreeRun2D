@@ -30,6 +30,10 @@ public class PlayerScript : MonoBehaviour {
     public float MaxVeloY = 5;
     Rigidbody2D rigidBody2D;
 
+    public float RequiredSpeedToBreakGlass = 5;
+
+    float veloLastFrame;
+
     void Start () {
 
         rigidBody2D = GetComponent<Rigidbody2D>();
@@ -149,7 +153,6 @@ public class PlayerScript : MonoBehaviour {
                 else if (freeScript.IsHanging)
                 {
                     freeScript.IsHanging = false;
-                    //animator.SetTrigger("ClimbEdge");
                     Jump(new Vector2((HangJumpForce/10) * (freeScript.dir * -1),HangJumpForce));
                 }
             }
@@ -163,6 +166,7 @@ public class PlayerScript : MonoBehaviour {
             }
         }
 
+        veloLastFrame = rigidBody2D.velocity.x;
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -172,6 +176,18 @@ public class PlayerScript : MonoBehaviour {
             rigidBody2D.drag = 3f;
             disableInput = true;
         }
+
+        if (col.collider.tag == "Glass")
+        {
+            print(rigidBody2D.velocity.x);
+            if (Mathf.Abs(veloLastFrame) >= RequiredSpeedToBreakGlass)
+            {
+                //Destroy(col.gameObject);
+                col.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+            }
+        }
+
+
     }
 
     public void Jump(float forceY, float forceX = 0)
