@@ -76,7 +76,6 @@ public class FreerunScript : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                print("You jumped");
                 if (isRightWall && dir < 0 && !haveWallJumped)
                 {
                     plyScript.Jump(new Vector2(WallJumpSideX, WallJumpSideY));
@@ -132,7 +131,6 @@ public class FreerunScript : MonoBehaviour {
         }
     }
 
-    public GameObject jumpIndicator;
 
     void OnTriggerStay2D(Collider2D col)
     {
@@ -145,14 +143,12 @@ public class FreerunScript : MonoBehaviour {
         }
         else if (rigidBody2D.velocity.y >= (MaxVelocityYOnWall - 2) && col.tag == "Wall" && !plyScript.isOnGround && !IsHanging)
         {
-            jumpIndicator.SetActive(true);
             canWallJump = true;
 
         }
         else
         {
             canWallJump = false;
-            jumpIndicator.SetActive(false);
         }
 
         if (col.tag == "Wall" && rigidBody2D.velocity.y < MaxVelocityYOnWall && rigidBody2D.velocity.y > -10)
