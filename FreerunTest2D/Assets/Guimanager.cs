@@ -15,7 +15,6 @@ public class Guimanager : MonoBehaviour {
         
         var firstPlay = PlayerPrefs.GetFloat("firstplay");
 
-        print(firstPlay);
         if (firstPlay == 0)
             firstPlayPanel.SetActive(true);
     

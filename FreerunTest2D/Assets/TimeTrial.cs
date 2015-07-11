@@ -71,7 +71,6 @@ public class TimeTrial : MonoBehaviour {
 		{
             indicator.SetActive(true);
 			isLive = true;
-			print("Start!");
 			start.SetActive(false);
 			NextCheckPoint++;
             CheckPoints[NextCheckPoint].GetComponent<SpriteRenderer>().color = NextTargetColor;
